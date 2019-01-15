@@ -1,0 +1,15 @@
+﻿@model IEnumerable<MyStoreProject.Models.Loai>
+
+@{
+    var dsLoaiCha = Model.Where(p => p.MaLoaiCha == 0).ToList();
+}
+@foreach (var lo in dsLoaiCha)
+{
+    var dsLoaiCon = Model.Where(p => p.MaLoaiCha == lo.MaLoai).ToList();
+    <optgroup label="@lo.TenLoai">
+        @foreach (var loC in dsLoaiCon)
+        {
+            <option value="@loC.MaLoai">@loC.TenLoai</option>
+        }
+    </optgroup>
+}

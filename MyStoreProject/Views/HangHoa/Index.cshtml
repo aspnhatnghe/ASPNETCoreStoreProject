@@ -1,0 +1,57 @@
+﻿@model PagedList.Core.IPagedList<MyStoreProject.Models.HangHoaView>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<form asp-action="Index" asp-controller="HangHoa" 
+asp-route-maLoai="@ViewBag.MaLoai" class="text-center">
+    <input placeholder="Nhập từ khóa" name="keyword" />
+    <button class="btn btn-success">Tìm kiến</button>
+</form>
+<div class="spec ">
+    <h3>@ViewBag.TieuDe</h3>
+    <div class="ser-t">
+        <b></b>
+        <span><i></i></span>
+        <b class="line"></b>
+    </div>
+</div>
+<pager class="pager-container text-center" list="@Model" asp-action="Index" asp-controller="HangHoa" />
+<div class=" con-w3l agileinf">
+    @foreach (var hh in Model)
+    {
+        <div class="col-md-3 pro-1">
+            <div class="col-m">
+                <a href="#" data-toggle="modal" data-target="#myModal1" class="offer-img">
+                    <img src="~/Hinh/HangHoa/@hh.Hinh" class="img-responsive" alt="">
+                </a>
+                <div class="mid-1">
+                    <div class="women">
+                        <h6><a asp-action="Detail" asp-controller="HangHoa" 
+asp-route-id="@hh.MaHh">@hh.TenHH</a></h6>
+                    </div>
+                    <div class="mid-2">
+                        <p>
+                            @if (hh.DangGiamGia)
+                            {
+                            <label>@hh.DonGia.ToString("#,##0") đ</label>
+                            }
+                            <em class="item_price">
+                                @hh.GiaBan.ToString("#,##0") đ
+                            </em>
+                        </p>
+                        <div class="block">
+                            <div class="starbox small ghosting"> </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="add">
+                        <button class="btn btn-danger my-cart-btn my-cart-b" data-id="24" data-name="Wheat" data-summary="summary 24" data-price="6.00" data-quantity="1" data-image="images/of24.png">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <div class="clearfix"></div>
+</div>
+<pager class="pager-container text-center" list="@Model" asp-action="Index" asp-controller="HangHoa" />

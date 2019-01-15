@@ -1,0 +1,60 @@
+﻿@model MyStoreProject.Models.HangHoa
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_BackEnd.cshtml";
+}
+
+<h2>Thêm hàng hóa</h2>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MaLoai" class="control-label"></label>
+                <select asp-for="MaLoai" class="form-control">
+                    @await Component.InvokeAsync("LoaiDropDownList")
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="TenHH" class="control-label"></label>
+                <input asp-for="TenHH" class="form-control" />
+                <span asp-validation-for="TenHH" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DonGia" class="control-label"></label>
+                <input asp-for="DonGia" class="form-control" />
+                <span asp-validation-for="DonGia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hinh" class="control-label"></label>
+                <input name="fHinh" type="file" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="GiamGia" class="control-label"></label>
+                <input asp-for="GiamGia" class="form-control" />
+                <span asp-validation-for="GiamGia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MoTa" class="control-label"></label>
+                <input asp-for="MoTa" class="form-control" />
+                <span asp-validation-for="MoTa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ChiTiet" class="control-label"></label>
+                <textarea asp-for="ChiTiet" rows="5" class="form-control"></textarea>
+                <span asp-validation-for="ChiTiet" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Tạo mới" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Danh sách Hàng hóa</a>
+</div>
+

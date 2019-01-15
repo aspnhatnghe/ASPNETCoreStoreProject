@@ -399,7 +399,7 @@ ul.multi-column-dropdown h6 {
 }
 
 .dropdown-menu.multi {
-    min-width: 745px;
+    min-width: 300px;
     padding: 30px 30px;
 }
 .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
@@ -990,6 +990,7 @@ ul.product-qty {
 /*--content-mid--*/
 .product {
 	padding:8em 0 6em;
+    min-height: 600px;
 }
 .pro-1 {
     margin-bottom: 2em;
