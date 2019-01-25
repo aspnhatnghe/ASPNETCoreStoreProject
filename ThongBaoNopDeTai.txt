@@ -1,0 +1,15 @@
+﻿THÔNG BÁO
+1/ Học viên nộp đề tài:
++ Upload source + document lên cloud như Google Drive, Dropbox, OneDrive, ...
++ Share quyền đọc để lấy file
+
+2/Gửi email tới giaovu@nhatnghe.com
+Nội dung bao gồm:
++ Đường link lấy dữ liệu
++ Họ tên học viên
++ Lớp: ASP.NET Core 2.0, thầy Lương Trần Hy Hiến, khai giảng ngày 09/11/2018
++ Số điện thoại
+
+3/ Bộ phận giáo vụ sẽ xác nhận đã nhận đầy đủ source qua email.
+
+Trân trọng./.

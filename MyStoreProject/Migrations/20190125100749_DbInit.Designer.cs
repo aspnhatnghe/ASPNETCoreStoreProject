@@ -10,8 +10,8 @@ using MyStoreProject.Models;
 namespace MyStoreProject.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20190115041007_AddLoai4HangHoa")]
-    partial class AddLoai4HangHoa
+    [Migration("20190125100749_DbInit")]
+    partial class DbInit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,31 @@ namespace MyStoreProject.Migrations
                 .HasAnnotation("ProductVersion", "2.1.1-rtm-30846")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("MyStoreProject.Models.ChiTietDonHang", b =>
+                {
+                    b.Property<int>("MaCT")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<double>("DonGia");
+
+                    b.Property<double>("GiamGia");
+
+                    b.Property<int>("MaDH");
+
+                    b.Property<int>("MaHH");
+
+                    b.Property<int>("SoLuong");
+
+                    b.HasKey("MaCT");
+
+                    b.HasIndex("MaDH");
+
+                    b.HasIndex("MaHH");
+
+                    b.ToTable("ChiTietDonHang");
+                });
 
             modelBuilder.Entity("MyStoreProject.Models.DanhGia", b =>
                 {
@@ -32,7 +57,7 @@ namespace MyStoreProject.Migrations
                     b.Property<int>("MaHH");
 
                     b.Property<string>("MaKH")
-                        .HasMaxLength(10);
+                        .HasMaxLength(50);
 
                     b.Property<DateTime>("NgayDanhGia");
 
@@ -43,6 +68,32 @@ namespace MyStoreProject.Migrations
                     b.HasIndex("MaKH");
 
                     b.ToTable("DanhGia");
+                });
+
+            modelBuilder.Entity("MyStoreProject.Models.DonHang", b =>
+                {
+                    b.Property<int>("MaDH")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("DiaChiGiao");
+
+                    b.Property<string>("MaKH")
+                        .HasMaxLength(50);
+
+                    b.Property<int>("MaTrangThai");
+
+                    b.Property<DateTime>("NgayDat");
+
+                    b.Property<string>("NguoiNhan");
+
+                    b.HasKey("MaDH");
+
+                    b.HasIndex("MaKH");
+
+                    b.HasIndex("MaTrangThai");
+
+                    b.ToTable("DonHang");
                 });
 
             modelBuilder.Entity("MyStoreProject.Models.HangHoa", b =>
@@ -78,7 +129,7 @@ namespace MyStoreProject.Migrations
                 {
                     b.Property<string>("MaKH")
                         .ValueGeneratedOnAdd()
-                        .HasMaxLength(10);
+                        .HasMaxLength(50);
 
                     b.Property<bool>("DangHoatDong");
 
@@ -122,6 +173,32 @@ namespace MyStoreProject.Migrations
                     b.ToTable("Loai");
                 });
 
+            modelBuilder.Entity("MyStoreProject.Models.TrangThai", b =>
+                {
+                    b.Property<int>("MaTrangThai")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("TenTrangThai");
+
+                    b.HasKey("MaTrangThai");
+
+                    b.ToTable("TrangThai");
+                });
+
+            modelBuilder.Entity("MyStoreProject.Models.ChiTietDonHang", b =>
+                {
+                    b.HasOne("MyStoreProject.Models.DonHang", "DonHang")
+                        .WithMany()
+                        .HasForeignKey("MaDH")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("MyStoreProject.Models.HangHoa", "HangHoa")
+                        .WithMany()
+                        .HasForeignKey("MaHH")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("MyStoreProject.Models.DanhGia", b =>
                 {
                     b.HasOne("MyStoreProject.Models.HangHoa", "HangHoa")
@@ -132,6 +209,18 @@ namespace MyStoreProject.Migrations
                     b.HasOne("MyStoreProject.Models.KhachHang", "KhachHang")
                         .WithMany()
                         .HasForeignKey("MaKH");
+                });
+
+            modelBuilder.Entity("MyStoreProject.Models.DonHang", b =>
+                {
+                    b.HasOne("MyStoreProject.Models.KhachHang", "KhachHang")
+                        .WithMany()
+                        .HasForeignKey("MaKH");
+
+                    b.HasOne("MyStoreProject.Models.TrangThai", "TrangThai")
+                        .WithMany("DonHangs")
+                        .HasForeignKey("MaTrangThai")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("MyStoreProject.Models.HangHoa", b =>

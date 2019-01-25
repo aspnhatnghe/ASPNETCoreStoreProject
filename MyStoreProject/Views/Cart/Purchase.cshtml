@@ -1,0 +1,56 @@
+﻿@model MyStoreProject.Models.ThanhToanViewModel
+
+@{
+    ViewData["Title"] = "Purchase";
+    var disableClass = User.Identity.IsAuthenticated ? "disabled" : "";
+}
+
+<h2>Thông tin Đơn hàng</h2>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Purchase">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group hidden">
+                <label asp-for="MaKH" class="control-label"></label>
+                <input asp-for="MaKH" class="form-control" />
+                <span asp-validation-for="MaKH" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HoTen" class="control-label"></label>
+                <input asp-for="HoTen" class="form-control" @disableClass />
+                <span asp-validation-for="HoTen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" @disableClass />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DienThoai" class="control-label"></label>
+                <input asp-for="DienThoai" class="form-control"  @disableClass />
+                <span asp-validation-for="DienThoai" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NguoiNhan" class="control-label"></label>
+                <input asp-for="NguoiNhan" class="form-control" />
+                <span asp-validation-for="NguoiNhan" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DiaChiGiao" class="control-label"></label>
+                <input asp-for="DiaChiGiao" class="form-control" />
+                <span asp-validation-for="DiaChiGiao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Đặt hàng" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+    <div class="col-md-6">
+        <h2>Danh sách Hàng mua</h2>
+    </div>
+
+</div>
+
+
+

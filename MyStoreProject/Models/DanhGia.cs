@@ -12,7 +12,7 @@ namespace MyStoreProject.Models
     {
         public int Id { get; set; }
         public int MaHH { get; set; }
-        [MaxLength(10, ErrorMessage = "Tối đa 10 kí tự")]
+        [MaxLength(50, ErrorMessage = "Tối đa 50 kí tự")]
         public string MaKH { get; set; }
         public int Diem { get; set; }
         public DateTime NgayDanhGia { get; set; }

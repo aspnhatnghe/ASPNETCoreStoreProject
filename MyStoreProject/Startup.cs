@@ -37,12 +37,20 @@ namespace MyStoreProject
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddDbContext<MyDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("MyProject")));
+            //ViewComponent
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+            //class ShoppingCart
+            services.AddSingleton<IShoppingCart, ShoppingCart>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSession(opt => {
+                opt.IdleTimeout = TimeSpan.FromMinutes(5);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseSession();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

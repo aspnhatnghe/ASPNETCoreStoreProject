@@ -1,0 +1,77 @@
+﻿@model IEnumerable<MyStoreProject.Models.CartItem>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="spec ">
+    <h3>Giỏ hàng</h3>
+    <div class="ser-t">
+        <b></b>
+        <span><i></i></span>
+        <b class="line"></b>
+    </div>
+</div>
+<table class="table ">
+    <tr>
+        <th class="t-head head-it ">Hàng hóa</th>
+        <th class="t-head">Giá bán</th>
+        <th class="t-head">Số lượng</th>
+        <th class="t-head">Tổng tiền</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr class="cross">
+            <td class="ring-in t-data">
+                <a asp-action="Detail" asp-controller="HangHoa" asp-route-id="@item.MaHh" class="at-in">
+                    <img src="~/Hinh/HangHoa/@item.Hinh" class="img-responsive" style="height:80px" alt="">
+                </a>
+                <div class="sed">
+                    <h5>@item.TenHH</h5>
+                </div>
+                <div class="clearfix"> </div>
+                <div class="close1" data-id="@item.MaHh">X<i class="fa fa-times" aria-hidden="true"></i></div>
+            </td>
+            <td class="t-data">
+                @item.GiaBan.ToString("#,##0") đ
+            </td>
+            <td class="t-data">
+                <div class="quantity">
+                    <div class="quantity-select">
+                        <div class="entry value-minus" data-id="@item.MaHh">&nbsp;</div>
+                        <div class="entry value"><span class="span-1 soluong-@item.MaHh">@item.SoLuong</span></div>
+                        <div class="entry value-plus active" data-id="@item.MaHh">&nbsp;</div>
+                    </div>
+                </div>
+            </td>
+            <td class="t-data t-w3l text-primary">
+                @item.ThanhTien.ToString("#,##0") đ
+            </td>
+        </tr>
+    }
+</table>
+<div>
+    Tổng tiền: 
+    <span class="text-danger" id="tongtien">@Model.Sum(p => p.ThanhTien).ToString("#,##0") đ</span>
+    <a class=" add-1" asp-action="Purchase" asp-controller="Cart">Thanh toán</a>
+</div>
+<script>
+    $(function () {
+        $(".value-plus").click(function () {
+            var mahh = $(this).attr("data-id");
+            var soluong = parseInt($(".soluong-" + mahh).html());
+            soluong++;
+            $.ajax({
+                url: "/Cart/UpdateCart",
+                data: { maHh: mahh, soLuong: soluong },
+                success: function (response) {
+                    //update số lượng, thành tiền tương ứng
+                    $(".soluong-" + mahh).html(soluong);
+                    //update tổng tiền
+                    var tong = response.tongTien.toLocaleString('en-US') + " đ";
+                    $("#tongtien").html(tong);
+                }
+            });
+        });
+    });
+</script>

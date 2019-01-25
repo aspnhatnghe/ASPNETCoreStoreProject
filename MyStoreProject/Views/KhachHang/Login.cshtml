@@ -1,0 +1,33 @@
+﻿@model MyStoreProject.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="main-agileits">
+    <div class="form-w3agile">
+        <h3>Login</h3>
+        <form asp-action="Login" asp-route-ReturnUrl="@ViewBag.ReturnUrl">
+           <div class="text-danger">@ViewBag.ThongBaoLoi</div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="key">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <input asp-for="TenDangNhap" placeholder="Tên đăng nhập" class="form-control" />
+                <span asp-validation-for="TenDangNhap" class="text-danger"></span>
+                <div class="clearfix"></div>
+            </div>
+            <div class="key">
+                <i class="fa fa-lock" aria-hidden="true"></i>
+                <input asp-for="MatKhau" class="form-control" placeholder="Mật khẩu" />
+                <span asp-validation-for="MatKhau" class="text-danger"></span>
+                <div class="clearfix"></div>
+            </div>
+            <input type="submit" value="Login" class="btn btn-primary">
+        </form>
+    </div>
+    <div class="forg">
+        <a href="#" class="forg-left">Quên mật khẩu</a>
+        <a asp-action="Register" asp-controller="KhachHang" class="forg-right">Đăng ký</a>
+        <div class="clearfix"></div>
+    </div>
+</div>

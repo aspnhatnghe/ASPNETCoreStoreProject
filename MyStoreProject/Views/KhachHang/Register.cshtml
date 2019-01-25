@@ -1,0 +1,49 @@
+﻿@model MyStoreProject.Models.KhachHang
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<!--login-->
+<div class="login">
+    <div class="main-agileits">
+        <div class="form-w3agile form1">
+            <h3>Register</h3>
+            <form asp-action="Register">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="key">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <input asp-for="HoTen" class="form-control" placeholder="Họ tên" />
+                    <span asp-validation-for="HoTen" class="text-danger"></span>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="key">
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                    <input asp-for="Email" class="form-control" placeholder="Email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="key">
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                    <input asp-for="DienThoai" class="form-control" placeholder="Điện thoại" />
+                    <span asp-validation-for="DienThoai" class="text-danger"></span>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="key">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <input asp-for="TenDangNhap" class="form-control" placeholder="Tên đăng nhập" />
+                    <span asp-validation-for="TenDangNhap" class="text-danger"></span>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="key">
+                    <i class="fa fa-lock" aria-hidden="true"></i>
+                    <input asp-for="MatKhau" class="form-control" placeholder="Password" />
+                    <span asp-validation-for="MatKhau" class="text-danger"></span>
+                    <div class="clearfix"></div>
+                </div>
+                <input type="submit" value="Đăng ký" class="btn btn-primary">
+            </form>
+        </div>
+
+    </div>
+</div>
